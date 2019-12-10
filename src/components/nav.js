@@ -12,7 +12,7 @@ const Nav = () => {
   </button> */}
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
-      <Link to="/">
+      <Link to="/web-apps">
         <p className="nav-item nav-link">Todos</p>
       </Link>
       {/* <Link to="/">

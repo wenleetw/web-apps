@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Nav />
       <Switch>
-        <Route path="/" exact={true} component={Todos} />
+        <Route path="/web-apps" exact component={Todos} />
       </Switch>
     </Router>
   );
