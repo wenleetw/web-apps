@@ -12,15 +12,12 @@ const Nav = () => {
   </button> */}
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
-      <Link to="/API">
-        <p className="nav-item nav-link active">API Lists<span className="sr-only">(current)</span></p>
-      </Link>
-      <Link to="/todos">
+      <Link to="/">
         <p className="nav-item nav-link">Todos</p>
       </Link>
-      <Link to="/">
+      {/* <Link to="/">
         <p className="nav-item nav-link">Pricing</p>
-      </Link>
+      </Link> */}
     </div>
   </div>
 </nav>

@@ -63,6 +63,13 @@ const Todos = props => {
             />
           </div>
           <div className="col-md-3">
+            <button className="btn-light btn-circle" 
+              onClick={()=> {
+                dispatch({type:'add', value:inputRef.current.value});
+                inputRef.current.value = "";
+                inputRef.current.focus();
+              }}>&nbsp;+&nbsp;
+            </button>
             <button className="btn btn-light" 
               onClick={()=> dispatch({type:'reset', payload:[] })}>Reset
             </button>
