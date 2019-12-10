@@ -1,2 +1,2 @@
 # web-apps
- small web apps
+ web apps
