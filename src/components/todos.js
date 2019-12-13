@@ -6,13 +6,12 @@ const reducer = (state, action) => {
   let todos;
   switch (action.type){
     case 'add':
-      // localStorage.setItem('todos', [...state, { id: state.length + 1, text: action.value, completed: false}]);
       todos = [...state, { id: state.length + 1, text: action.value, completed: false}]
       localStorage.setItem('todos', JSON.stringify(todos));
       return todos;
     case 'delete':
       todos = state.filter(item => item.id !== action.payload);
-      //localStorage.removeItem('todos', JSON.stringify(todos));
+      localStorage.setItem('todos', JSON.stringify(todos));
       return todos
     case 'completed':
       return state.map(item => {
@@ -21,8 +20,8 @@ const reducer = (state, action) => {
         localStorage.setItem('todos', JSON.stringify(todos));
         return {...item}
       })
-    case 'load':
-      return action.value;
+    case 'init':
+      return JSON.parse(action.value);
     case 'reset':
       localStorage.removeItem("todos");
       return action.payload;
@@ -36,13 +35,10 @@ const Todos = props => {
   const inputRef = useRef(); 
   const [state, dispatch] = useReducer(reducer, []);
 
-  useEffect((state) => {
+  useEffect(() => {
     inputRef.current.focus();
-    //localStorage.removeItem("todos");
-    console.log(localStorage.getItem("todos") ? JSON.parse(localStorage.getItem('todos')):{todo: []});
-    // let todos = localStorage.getItem("todos") ? localStorage.getItem("todos") : undefined;
-    // console.log(todos);
-    // dispatch({ type:'load', value: todos });
+    let todos = localStorage.getItem("todos") ? localStorage.getItem("todos") : [];
+    dispatch({ type:'init', value: todos });
   }, []);
 
   return (
@@ -84,6 +80,8 @@ const Todos = props => {
 }
 
 const TodosList = ({ items }) => {
+  console.log(items);
+  if (items && items.length === 0) return (<div></div>)
   return items.map(item => <TodoItem key={item.id} {...item}/>);
 }
 

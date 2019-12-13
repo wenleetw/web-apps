@@ -6,12 +6,13 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
-      <Nav />
-      <Switch>
-        <Route path="/web-apps" exact component={Todos} />
-      </Switch>
-    </Router>
+    <Todos />
+    // <Router>
+    //   <Nav />
+    //   <Switch>
+    //     <Route path="/web-apps" exact component={Todos} />
+    //   </Switch>
+    // </Router>
   );
 }
 
