@@ -21,7 +21,8 @@ const reducer = (state, action) => {
         return {...item}
       })
     case 'init':
-      return JSON.parse(action.value);
+      if (action.value && action.value.length > 0) return JSON.parse(action.value);
+      return [];
     case 'reset':
       localStorage.removeItem("todos");
       return action.payload;
@@ -45,22 +46,24 @@ const Todos = props => {
     <Context.Provider value={dispatch}>
       <div className="container bg-light shadow-light pb-4 mb-4">
         <div className="row justify-content-center">
-          <div className="fit pb-4">
-            <img src="https://picsum.photos/1140/280?random" alt=""></img><br></br>
+          <div className="col-md-12 px-0 pb-5 fit">
+            <img src="https://picsum.photos/1140/280?random"  alt=""></img><br></br>
           </div>
-          <div className="col-md-6 text-center">
+          <div className="offset-md-2 col-md-6 text-right">
             <input className="form-control" type="text" ref={inputRef}
                 onKeyPress={event => {
                   if (event.key === 'Enter') {
+                    if (!inputRef.current.value) return;
                     dispatch({type:'add', value: inputRef.current.value });
                     inputRef.current.value = "";
                   }
                 }}
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-12 col-md-4">
             <button className="btn-light btn-circle" 
               onClick={()=> {
+                if (!inputRef.current.value) return;
                 dispatch({type:'add', value:inputRef.current.value});
                 inputRef.current.value = "";
                 inputRef.current.focus();
@@ -80,7 +83,7 @@ const Todos = props => {
 }
 
 const TodosList = ({ items }) => {
-  console.log(items);
+  //console.log(items);
   if (items && items.length === 0) return (<div></div>)
   return items.map(item => <TodoItem key={item.id} {...item}/>);
 }
@@ -90,9 +93,9 @@ const TodoItem = ({ id, completed, text}) => {
 
   return(
     <div className="row justify-content-center m-1">  
-      <div className="col-md-6" style={{textDecoration:completed ? 'line-through' : ""}} onClick={() => dispatch({type: 'completed', payload:id })}>&nbsp;{text}&nbsp;
+      <div className="col-10 offset-md-1 col-md-6" style={{textDecoration:completed ? 'line-through' : ""}} onClick={() => dispatch({type: 'completed', payload:id })}>&nbsp;{text}&nbsp;
       </div>
-      <div className="col-md-2">     
+      <div className="col-2">     
         <button className="btn-danger btn-circle" onClick={() => dispatch({type: 'delete', payload:id })}>&nbsp;x&nbsp;</button>
       </div>
     </div>

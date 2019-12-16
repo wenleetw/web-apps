@@ -15,9 +15,6 @@ const Nav = () => {
       <Link to="/web-apps">
         <p className="nav-item nav-link">Todos</p>
       </Link>
-      {/* <Link to="/">
-        <p className="nav-item nav-link">Pricing</p>
-      </Link> */}
     </div>
   </div>
 </nav>

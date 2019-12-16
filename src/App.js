@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Todos from './components/todos';
-import Nav from './components/nav';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+// import Nav from './components/nav';
+// import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
