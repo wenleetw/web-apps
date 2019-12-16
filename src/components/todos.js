@@ -21,6 +21,7 @@ const reducer = (state, action) => {
         return {...item}
       })
     case 'init':
+      localStorage.removeItem("todos");
       if (action.value && action.value.length > 0) return JSON.parse(action.value);
       return [];
     case 'reset':
